@@ -523,17 +523,7 @@ footer{background:#fff;padding:72px 64px 32px;border-top:3px solid var(--red);}
 }
 .hero-overlay{display:none;}
 
-/* ── Local video background (replaces YouTube iframe) ── */
-.yt-bg-frame{
-  position:absolute;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  min-width:100%; min-height:100%;
-  width:auto; height:auto;
-  object-fit:cover;
-  pointer-events:none;
-}
- /* hide old overlay since yt-bg-overlay handles it */
+/* hide old overlay since yt-bg-overlay handles it */
 
 </style>
 </head>
@@ -596,26 +586,57 @@ footer{background:#fff;padding:72px 64px 32px;border-top:3px solid var(--red);}
 
 <div class="page active" id="page-home">
 
-  <!-- FULL-BLEED IMAGE HERO -->
+  <!-- FULL-BLEED VIDEO HERO -->
   <div class="hero">
+
+    <!-- Video background -->
     <div class="yt-bg-wrap">
-    <div class="yt-bg-overlay"></div>
-    <video class="yt-bg-frame" autoplay muted loop playsinline preload="auto">
-      <source src="hero-bg.mp4" type="video/mp4">
-    </video>
-  </div>
+      <video class="yt-bg-frame" autoplay muted loop playsinline preload="auto">
+        <source src="hero-bg.mp4" type="video/mp4">
+      </video>
+      <div class="yt-bg-overlay"></div>
+    </div>
+
+    <!-- Hero content sits above video -->
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker">UK Facilities Management Leaders</div>
+        <h1>The UK&rsquo;s Trusted<br><span>FM Partner</span><br>Since 1993</h1>
+        <p class="hero-sub">Exceptional facilities management for local authorities, housing associations, and commercial clients across the UK &mdash; 30 years of expertise, integrity, and community-focused excellence.</p>
+        <div class="hero-certs">
+          <div class="hc r">ISO 9001</div>
+          <div class="hc r">ISO 45001</div>
+          <div class="hc r">ISO 14001</div>
+          <div class="hc">CHAS Elite</div>
+          <div class="hc">Gas Safe</div>
+          <div class="hc">NICEIC</div>
+          <div class="hc">Living Wage</div>
+        </div>
         <div class="hero-btns">
           <a class="btn-r" href="#" data-page="services">Our Services &rarr;</a>
           <a class="btn-gw" href="#" data-page="contact">Get In Touch</a>
         </div>
       </div>
       <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num">30+</div><div class="hstat-txt"><h4>Years Experience</h4><p>Trusted UK FM provider since 1993</p></div></div>
-        <div class="hstat"><div class="hstat-num">11</div><div class="hstat-txt"><h4>Accreditations</h4><p>ISO 9001, 45001, 14001 &amp; more</p></div></div>
-        <div class="hstat"><div class="hstat-num">3</div><div class="hstat-txt"><h4>UK Regions</h4><p>Scotland, North, Midlands, South</p></div></div>
-        <div class="hstat"><div class="hstat-num">24/7</div><div class="hstat-txt"><h4>Emergency Response</h4><p>Round-the-clock reactive support</p></div></div>
+        <div class="hstat">
+          <div class="hstat-num">30+</div>
+          <div class="hstat-txt"><h4>Years Experience</h4><p>Trusted UK FM provider since 1993</p></div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">11</div>
+          <div class="hstat-txt"><h4>Accreditations</h4><p>ISO 9001, 45001, 14001 &amp; more</p></div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">3</div>
+          <div class="hstat-txt"><h4>UK Regions</h4><p>Scotland, North, Midlands, South</p></div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">24/7</div>
+          <div class="hstat-txt"><h4>Emergency Response</h4><p>Round-the-clock reactive support</p></div>
+        </div>
       </div>
     </div>
+
     <div class="scroll-ind"><span>Scroll</span><div class="scroll-arrow"></div></div>
   </div>
 
