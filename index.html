@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<!--
+  CHFM Group Website
+  ==================
+  Logo: Place chfm-new.png in the same folder as this index.html in your GitHub repo.
+  The logo is referenced as: src="chfm-new.png"
+  
+  GitHub Pages setup:
+  1. Rename this file to index.html
+  2. Add chfm-new.png to the same directory
+  3. Push to your GitHub repo
+  4. Enable GitHub Pages in repo Settings → Pages → Branch: main / root
+  
+  YouTube Hero: Uses embed from https://youtu.be/YoXMq1QstBs (starts at 4s)
+  Note: YouTube autoplay requires user interaction on some browsers.
+  The hero poster image shows as fallback.
+-->
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHFM Group &ndash; Trusted Facilities Management Across the UK</title>
+<meta name="description" content="CHFM Group delivers exceptional facilities management for local authorities, housing associations, and commercial clients across the UK. ISO accredited, 30+ years experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#E8000B; --red-d:#B50009; --red-p:#FEE8E8;
+  --black:#1a1a1a; --dark:#2d2d2d; --charcoal:#3a3a3a;
+  --g100:#F5F5F5; --g200:#EBEBEB; --g400:#9A9A9A; --g600:#5C5C5C;
+  --white:#FFFFFF;
+  --f:'Barlow',sans-serif; --f2:'Barlow Condensed',sans-serif;
+  --r:2px; --ease:.3s cubic-bezier(.25,.46,.45,.94);
+  --sh:0 4px 20px rgba(0,0,0,.10);
+  --sh-lg:0 16px 48px rgba(0,0,0,.18);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--charcoal);font-family:var(--f);
+  font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--red);}
+img,video{max-width:100%;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--black);color:var(--g600);font-size:12px;
+  padding:9px 64px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.topbar a{color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s;}
+.topbar a:hover{color:#fff;}
+.tb-live{color:var(--red);font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+.tb-dot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
+.tb-right{display:flex;gap:20px;align-items:center;}
+.tb-sep{color:rgba(255,255,255,.2);}
+
+/* ── NAV ── */
+nav{background:#fff;border-bottom:3px solid var(--red);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 64px;position:sticky;top:0;z-index:500;
+  box-shadow:0 2px 16px rgba(0,0,0,.08);min-height:90px;
+  transition:min-height var(--ease),box-shadow var(--ease);}
+nav.scrolled{min-height:70px;box-shadow:0 2px 24px rgba(0,0,0,.12);}
+.logo{display:flex;align-items:center;cursor:pointer;padding:6px 0;}
+.logo-img{height:68px;width:auto;transition:height var(--ease);}
+nav.scrolled .logo-img{height:52px;}
+.nav-links{display:flex;list-style:none;align-items:center;gap:0;margin:0;padding:0;}
+.nav-links a{color:var(--g600);text-decoration:none;font-family:var(--f2);
+  font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+  padding:8px 12px;border-bottom:3px solid transparent;
+  transition:color .15s,border-color .15s;white-space:nowrap;display:block;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{color:var(--black);border-bottom-color:var(--red);}
+.nav-cta{background:var(--red)!important;color:#fff!important;
+  padding:10px 22px!important;border-bottom:none!important;
+  border-radius:var(--r);margin-left:12px;}
+.nav-cta:hover{background:var(--red-d)!important;}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:44px;height:44px;background:none;border:none;cursor:pointer;padding:8px;border-radius:var(--r);}
+.hamburger span{display:block;width:24px;height:2px;background:var(--charcoal);
+  border-radius:1px;transition:transform .3s,opacity .3s;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ── MOBILE DRAWER ── */
+.mobile-nav{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;
+  width:280px;max-width:85vw;background:#fff;
+  box-shadow:-4px 0 32px rgba(0,0,0,.15);z-index:1000;
+  transform:translateX(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+  overflow-y:auto;}
+.mobile-nav.open{transform:translateX(0);}
+.mnav-hdr{display:flex;align-items:center;justify-content:space-between;
+  padding:18px 20px;border-bottom:3px solid var(--red);position:sticky;top:0;background:#fff;z-index:2;}
+.mnav-hdr svg{height:44px;width:auto;}
+.mnav-close{background:none;border:none;cursor:pointer;width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;border-radius:50%;
+  font-size:20px;color:var(--g600);}
+.mobile-nav ul{list-style:none;padding:12px 0;}
+.mobile-nav ul li a{display:block;padding:14px 24px;font-family:var(--f2);
+  font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--charcoal);text-decoration:none;cursor:pointer;
+  border-left:3px solid transparent;transition:color .2s,border-color .2s,background .2s;}
+.mobile-nav ul li a:hover,.mobile-nav ul li a.active{
+  color:var(--red);border-left-color:var(--red);background:var(--red-p);}
+.mnav-cta{margin:12px 20px 20px;display:block;text-align:center;
+  background:var(--red);color:#fff;font-family:var(--f2);font-weight:700;
+  font-size:15px;letter-spacing:.08em;text-transform:uppercase;
+  padding:14px 20px;border-radius:var(--r);text-decoration:none;cursor:pointer;}
+.mnav-contact{margin:0 20px 24px;padding:16px;background:var(--g100);border-radius:var(--r);}
+.mnav-contact a{font-size:14px;color:var(--black);text-decoration:none;font-weight:600;padding:5px 0;display:block;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;animation:pf .4s ease;}
+@keyframes pf{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+
+/* ═══════════════════════════════════════════
+   FULL-BLEED IMAGE HERO (home page)
+═══════════════════════════════════════════ */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;overflow:hidden;}
+video.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
+.hero-overlay{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(105deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.25) 100%);}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1200px;
+  margin:0 auto;padding:0 64px;display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center;}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--f2);font-size:12px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--red);margin-bottom:20px;}
+.hero-kicker::before{content:"";width:32px;height:2px;background:var(--red);}
+.hero h1{font-family:var(--f2);font-weight:800;
+  font-size:clamp(40px,5.5vw,76px);line-height:1.04;
+  color:#fff;margin-bottom:20px;letter-spacing:-.5px;}
+.hero h1 span{color:var(--red);}
+.hero-sub{font-size:17px;font-weight:400;color:rgba(255,255,255,.72);
+  line-height:1.78;max-width:520px;margin-bottom:28px;}
+.hero-certs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
+.hc{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  font-family:var(--f2);font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.72);padding:5px 12px;border-radius:var(--r);white-space:nowrap;}
+.hc.r{background:rgba(232,0,11,.2);border-color:rgba(232,0,11,.5);color:#ff4444;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-stats{display:flex;flex-direction:column;gap:12px;}
+.hstat{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15);border-left:3px solid var(--red);
+  border-radius:var(--r);padding:18px 22px;display:flex;align-items:center;gap:16px;
+  animation:slideIn .7s ease both;}
+.hstat:nth-child(1){animation-delay:.3s;}.hstat:nth-child(2){animation-delay:.46s;}
+.hstat:nth-child(3){animation-delay:.62s;}.hstat:nth-child(4){animation-delay:.78s;}
+@keyframes slideIn{from{opacity:0;transform:translateX(28px);}to{opacity:1;transform:translateX(0);}}
+.hstat-num{font-family:var(--f2);font-weight:800;font-size:32px;color:var(--red);line-height:1;min-width:54px;}
+.hstat-txt h4{font-family:var(--f2);font-weight:700;font-size:14px;letter-spacing:.04em;color:#fff;margin-bottom:2px;text-transform:uppercase;}
+.hstat-txt p{font-size:12px;color:rgba(255,255,255,.5);}
+.scroll-ind{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:7px;z-index:2;}
+.scroll-ind span{font-family:var(--f2);font-size:10px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--g600);}
+.scroll-arrow{width:22px;height:34px;border:2px solid rgba(255,255,255,.2);border-radius:12px;position:relative;}
+.scroll-arrow::after{content:"";position:absolute;width:4px;height:8px;
+  background:var(--red);border-radius:2px;left:50%;transform:translateX(-50%);
+  top:5px;animation:sd 2s infinite;}
+@keyframes sd{0%{top:5px;opacity:1;}100%{top:16px;opacity:0;}}
+
+/* ── METRICS BAR ── */
+.metrics-bar{background:var(--red);display:grid;grid-template-columns:repeat(5,1fr);}
+.mb-item{text-align:center;padding:20px 16px;border-right:1px solid rgba(255,255,255,.18);}
+.mb-item:last-child{border-right:none;}
+.mb-num{font-family:var(--f2);font-weight:800;font-size:28px;color:#fff;line-height:1;letter-spacing:-.5px;}
+.mb-lbl{font-family:var(--f2);font-size:10px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:4px;}
+
+/* ── SECTIONS ── */
+.sec{padding:88px 64px;}
+.sec-inner{max-width:1160px;margin:0 auto;}
+.sec-off{background:var(--g100);}
+.sec-dark{background:var(--black);}
+
+/* ── IMAGE SECTION (sections with background photos) ── */
+.sec-img{position:relative;overflow:hidden;}
+.sec-img-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
+.sec-img-ov{position:absolute;inset:0;z-index:1;}
+.sec-img>.sec-inner{position:relative;z-index:2;}
+
+/* ── EYEBROW ── */
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--f2);
+  font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--red);margin-bottom:12px;}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--red);}
+.eyebrow-w{color:rgba(232,0,11,.8);}
+.eyebrow-w::before{background:rgba(232,0,11,.8);}
+
+/* ── HEADINGS ── */
+.h2{font-family:var(--f2);font-weight:800;font-size:clamp(28px,3.5vw,48px);
+  line-height:1.12;color:var(--black);letter-spacing:-.4px;margin-bottom:14px;}
+.h2 span{color:var(--red);}
+.h2-w{color:#fff;}.h2-w span{color:var(--red);}
+.lead{font-size:17px;color:var(--g600);line-height:1.75;max-width:640px;margin-bottom:44px;}
+.lead-w{color:rgba(255,255,255,.62);}
+.body-txt{font-size:16px;color:var(--g600);line-height:1.78;margin-bottom:16px;}
+.body-txt-w{color:rgba(255,255,255,.65);}
+
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.flip>*:first-child{order:2;}.flip>*:last-child{order:1;}
+
+/* ── IMAGE FRAMES ── */
+.img-frame{position:relative;overflow:hidden;box-shadow:var(--sh-lg);}
+.img-frame img{width:100%;height:400px;object-fit:cover;display:block;transition:transform .7s;}
+.img-frame:hover img{transform:scale(1.03);}
+.img-bar{position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(0,rgba(0,0,0,.75),transparent);padding:20px 18px 14px;}
+.img-bar p{font-family:var(--f2);font-size:11px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.7);}
+.img-bar span{color:var(--red);}
+
+/* ── SERVICE CARDS ── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--g200);border:1px solid var(--g200);margin-top:44px;}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px;}
+.feat-card{background:#fff;padding:36px 30px;position:relative;overflow:hidden;
+  transition:box-shadow .2s,transform .2s;}
+.feat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.feat-card:hover{box-shadow:var(--sh-lg);transform:translateY(-3px);}
+.feat-card:hover::before{transform:scaleX(1);}
+.feat-icon{width:44px;height:44px;background:var(--g100);display:flex;
+  align-items:center;justify-content:center;border-radius:var(--r);
+  margin-bottom:16px;font-size:20px;transition:background .2s;}
+.feat-card:hover .feat-icon{background:var(--red-p);}
+.feat-card h3{font-family:var(--f2);font-weight:700;font-size:17px;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--black);margin-bottom:10px;}
+.feat-card p{font-size:14.5px;color:var(--g600);line-height:1.72;}
+
+/* ── PANEL GRID ── */
+.panel3{display:grid;grid-template-columns:repeat(3,1fr);margin-top:44px;}
+.p-black{background:var(--black);padding:40px;}
+.p-red{background:var(--red);padding:40px;}
+.p-white{background:#fff;padding:40px;border:1px solid var(--g200);}
+.panel-lbl{font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;margin-bottom:12px;}
+.p-black .panel-lbl{color:var(--red);}
+.p-red .panel-lbl{color:rgba(255,255,255,.65);}
+.p-white .panel-lbl{color:var(--red);}
+.p-black h3,.p-red h3{font-family:var(--f2);font-weight:700;font-size:20px;color:#fff;margin-bottom:12px;letter-spacing:.02em;text-transform:uppercase;}
+.p-white h3{font-family:var(--f2);font-weight:700;font-size:20px;color:var(--black);margin-bottom:12px;letter-spacing:.02em;text-transform:uppercase;}
+.p-black p{font-size:14px;color:rgba(255,255,255,.52);line-height:1.72;}
+.p-red p{font-size:14px;color:rgba(255,255,255,.82);line-height:1.72;}
+.p-white p{font-size:14px;color:var(--g600);line-height:1.72;}
+
+/* ── ACCREDS ── */
+.accred-wrap{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--g200);border:1px solid var(--g200);margin-top:44px;}
+.ac{background:#fff;padding:28px 24px;transition:background .2s;}
+.ac:hover{background:var(--g100);}
+.ac-badge{display:inline-block;background:var(--black);color:#fff;
+  font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 10px;border-radius:var(--r);margin-bottom:10px;}
+.ac h3{font-family:var(--f2);font-weight:700;font-size:16px;color:var(--black);
+  margin-bottom:7px;letter-spacing:.02em;text-transform:uppercase;}
+.ac p{font-size:13.5px;color:var(--g600);line-height:1.68;}
+
+/* ── AREA CARDS ── */
+.area-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;}
+.area-card{background:#fff;border:1px solid var(--g200);overflow:hidden;
+  transition:box-shadow .2s,transform .2s;}
+.area-card:hover{box-shadow:var(--sh-lg);transform:translateY(-3px);}
+.ac-img{position:relative;height:200px;overflow:hidden;}
+.ac-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s;}
+.area-card:hover .ac-img img{transform:scale(1.05);}
+.ac-ov{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.75) 100%);}
+.ac-lbl{position:absolute;bottom:14px;left:18px;font-family:var(--f2);font-weight:800;
+  font-size:22px;color:#fff;text-transform:uppercase;letter-spacing:.02em;}
+.ac-body{padding:24px;}
+.ac-tag{display:inline-block;background:var(--g100);color:var(--g600);
+  font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 9px;border-radius:var(--r);margin-bottom:9px;}
+.ac-body p{font-size:14px;color:var(--g600);line-height:1.72;margin-bottom:14px;}
+.form-sep{font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--red);display:block;
+  padding-top:14px;border-top:1px solid var(--g200);margin-bottom:9px;}
+
+/* ── ROLE CARDS ── */
+.rc{background:#fff;border:1px solid var(--g200);padding:28px 24px;
+  position:relative;overflow:hidden;transition:box-shadow .2s;}
+.rc::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.rc:hover{box-shadow:var(--sh);}
+.rc:hover::before{transform:scaleX(1);}
+.rc h3{font-family:var(--f2);font-weight:700;font-size:17px;color:var(--black);
+  margin-bottom:8px;letter-spacing:.03em;text-transform:uppercase;}
+.rc p{font-size:14.5px;color:var(--g600);line-height:1.7;}
+
+/* ── FIELDS ── */
+.field{width:100%;background:var(--g100);border:1.5px solid var(--g200);color:var(--black);
+  padding:12px 14px;font-family:var(--f);font-size:14px;margin-bottom:9px;
+  outline:none;transition:border-color .2s,box-shadow .2s;border-radius:var(--r);}
+.field:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,0,11,.08);}
+textarea.field{height:110px;resize:vertical;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+
+/* ── CTA BANDS ── */
+.red-band{background:var(--red);padding:60px 64px;display:flex;
+  align-items:center;justify-content:space-between;gap:40px;}
+.red-band h2{font-family:var(--f2);font-weight:800;font-size:clamp(20px,3vw,38px);
+  color:#fff;letter-spacing:-.3px;text-transform:uppercase;}
+.red-band p{font-size:15px;color:rgba(255,255,255,.76);margin-top:7px;max-width:480px;}
+.black-band{background:var(--black);padding:60px 64px;display:flex;
+  align-items:center;justify-content:space-between;gap:40px;}
+.black-band h2{font-family:var(--f2);font-weight:800;font-size:clamp(20px,3vw,38px);
+  color:#fff;letter-spacing:-.3px;text-transform:uppercase;}
+.black-band p{font-size:15px;color:var(--g600);margin-top:7px;max-width:480px;}
+
+/* ── IMAGE BANNER ── */
+.img-banner{width:100%;height:320px;position:relative;overflow:hidden;}
+.img-banner img{width:100%;height:100%;object-fit:cover;}
+.ib-ov{position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.4) 100%);}
+.ib-txt{position:absolute;top:50%;left:64px;transform:translateY(-50%);
+  font-family:var(--f2);font-weight:800;font-size:clamp(28px,4.5vw,58px);
+  color:#fff;line-height:1.06;text-transform:uppercase;letter-spacing:-.4px;}
+.ib-txt span{color:var(--red);}
+
+/* ── PAGE HERO (inner pages — bg image) ── */
+.phero{position:relative;min-height:360px;display:flex;align-items:flex-end;overflow:hidden;}
+.phero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.phero-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 40%,rgba(0,0,0,.5) 100%);}
+.phero-wrap{position:relative;z-index:2;padding:60px 64px;max-width:820px;}
+.bc{font-family:var(--f2);font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--g600);margin-bottom:14px;display:flex;gap:5px;}
+.bc strong{color:var(--red);}
+.phero h1{font-family:var(--f2);font-weight:800;font-size:clamp(28px,4.5vw,58px);
+  line-height:1.06;color:#fff;text-transform:uppercase;letter-spacing:-.4px;margin-bottom:12px;}
+.phero h1 span{color:var(--red);}
+.phero p{font-size:16px;color:rgba(255,255,255,.58);max-width:600px;line-height:1.72;}
+
+/* ── PULL QUOTE ── */
+.pq{border-left:4px solid var(--red);padding:16px 24px;background:var(--red-p);
+  margin:28px 0;}
+.pq p{font-family:var(--f2);font-size:18px;font-weight:600;font-style:italic;
+  color:var(--black);line-height:1.55;}
+
+/* ── BULLETS ── */
+.blist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;}
+.bi{display:flex;gap:13px;align-items:flex-start;background:#fff;
+  padding:20px;border-top:3px solid var(--red);box-shadow:var(--sh);transition:box-shadow .2s;}
+.bi:hover{box-shadow:var(--sh-lg);}
+.bi h4{font-family:var(--f2);font-weight:700;font-size:14px;color:var(--black);
+  margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em;}
+.bi p{font-size:13.5px;color:var(--g600);line-height:1.62;}
+
+/* ── CHECKLIST ── */
+.ckl{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:18px;}
+.ckl li{display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--g600);line-height:1.5;}
+.ckl li::before{content:"✓";color:var(--red);font-weight:800;font-size:14px;flex-shrink:0;margin-top:1px;}
+
+/* ── CONTACT ── */
+.cblock{background:var(--g100);padding:36px;border:1px solid var(--g200);}
+.cd{margin-bottom:22px;}.cd:last-child{margin-bottom:0;}
+.cd h4{font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--red);margin-bottom:5px;}
+.cd p{font-size:15.5px;color:var(--black);line-height:1.6;}
+.cd a{color:var(--black);text-decoration:none;font-weight:700;font-size:17px;}
+.cd a:hover{color:var(--red);}
+.cert-strip{margin-top:14px;background:var(--black);padding:20px 24px;}
+.cert-lbl{font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:9px;}
+.cert-badges{display:flex;flex-wrap:wrap;gap:6px;}
+.cbadge{background:rgba(232,0,11,.15);border:1px solid rgba(232,0,11,.3);
+  color:#ff4444;font-family:var(--f2);font-size:10px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;}
+
+/* ── DIVIDERS ── */
+.hr{height:1px;background:var(--g200);margin:60px 0;}
+.hr-r{height:2px;background:linear-gradient(90deg,var(--red),transparent);margin:48px 0;}
+
+/* ── BUTTONS ── */
+.btn-r{background:var(--red);color:#fff;font-family:var(--f2);font-weight:700;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:13px 30px;
+  cursor:pointer;border:none;transition:background .2s,transform .15s,box-shadow .2s;
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:var(--r);}
+.btn-r:hover{background:var(--red-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,0,11,.3);}
+.btn-b{background:var(--black);color:#fff;font-family:var(--f2);font-weight:700;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:13px 30px;
+  cursor:pointer;border:none;transition:background .2s,transform .15s;
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;border-radius:var(--r);}
+.btn-b:hover{background:#111;transform:translateY(-2px);}
+.btn-gw{background:transparent;color:rgba(255,255,255,.85);font-family:var(--f2);
+  font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:12px 28px;border:1.5px solid rgba(255,255,255,.35);
+  cursor:pointer;transition:border-color .2s,color .2s;
+  display:inline-flex;align-items:center;gap:8px;border-radius:var(--r);}
+.btn-gw:hover{border-color:#fff;color:#fff;}
+.btn-ol{background:transparent;color:var(--black);font-family:var(--f2);font-weight:700;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:12px 28px;border:2px solid var(--black);
+  cursor:pointer;transition:background .2s,color .2s;
+  display:inline-flex;align-items:center;gap:8px;border-radius:var(--r);}
+.btn-ol:hover{background:var(--black);color:#fff;}
+.btn-w{background:#fff;color:var(--black);font-family:var(--f2);font-weight:700;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 32px;border:none;cursor:pointer;
+  transition:box-shadow .2s,transform .15s;
+  display:inline-flex;align-items:center;gap:7px;text-decoration:none;white-space:nowrap;border-radius:var(--r);}
+.btn-w:hover{box-shadow:0 8px 24px rgba(0,0,0,.22);transform:translateY(-2px);}
+
+/* ── FOOTER ── */
+footer{background:#fff;padding:72px 64px 32px;border-top:3px solid var(--red);}
+.footer-grid{display:grid;grid-template-columns:2.4fr 1fr 1fr 1.2fr;gap:52px;max-width:1160px;margin:0 auto 52px;}
+.footer-brand p{font-size:13.5px;color:var(--g600);line-height:1.72;margin-top:16px;max-width:270px;}
+.f-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.fb{background:rgba(232,0,11,.15);border:1px solid rgba(232,0,11,.3);
+  color:rgba(232,0,11,.9);font-family:var(--f2);font-size:9.5px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;}
+.fc h4{font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--black);margin-bottom:16px;padding-bottom:9px;
+  border-bottom:1px solid var(--g200);}
+.fc ul{list-style:none;}.fc li{margin-bottom:9px;}
+.fc a{color:var(--g600);text-decoration:none;font-size:13.5px;
+  transition:color .2s;cursor:pointer;}
+.fc a:hover{color:var(--red);}
+.foot-bot{border-top:1px solid var(--g200);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:1160px;margin:0 auto;flex-wrap:wrap;gap:8px;}
+.foot-bot p{font-size:12px;color:var(--g400);}
+.foot-bot strong{color:var(--red);}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1080px){
+  .topbar{padding:8px 24px;font-size:11px;}
+  nav{padding:0 24px;min-height:76px;}
+  nav.scrolled{min-height:64px;}
+  .logo-img{height:68px;width:auto;transition:height var(--ease);}
+  nav.scrolled .logo-img{height:52px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero-inner{grid-template-columns:1fr;padding:0 40px;}
+  .hero-stats{display:none;}
+  .hero{height:85vh;}
+  .hero h1{font-size:clamp(34px,7vw,58px);}
+  .sec{padding:60px 32px;}
+  .two-col{grid-template-columns:1fr;gap:40px;}
+  .flip>*:first-child,.flip>*:last-child{order:0;}
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .feat-card:nth-child(2n){border-right:none;}
+  .panel3{grid-template-columns:1fr 1fr;}
+  .accred-wrap{grid-template-columns:1fr 1fr;}
+  .area-grid{grid-template-columns:1fr 1fr;}
+  .grid2{grid-template-columns:1fr;}
+  .metrics-bar{grid-template-columns:repeat(3,1fr);}
+  .mb-item:nth-child(3){border-right:none;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  footer{padding:56px 32px 28px;}
+  .red-band,.black-band{flex-direction:column;align-items:flex-start;padding:44px 32px;gap:24px;}
+  .phero{min-height:300px;}
+  .phero-wrap{padding:48px 32px;}
+  .img-banner{height:250px;}
+  .ib-txt{left:32px;}
+  .img-frame img{height:340px;}
+}
+@media(max-width:640px){
+  nav{padding:0 16px;min-height:68px;}
+  .logo-img{height:68px;width:auto;transition:height var(--ease);}
+  .topbar{display:none;}
+  .hero{height:auto;min-height:auto;}
+  .hero-inner{padding:80px 20px 100px;}
+  .hero h1{font-size:clamp(28px,8vw,44px);}
+  .hero-sub{font-size:15px;}
+  .hero-certs{gap:6px;margin-bottom:28px;}
+  .hc{font-size:10px;padding:4px 9px;}
+  .hero-btns{flex-direction:column;gap:10px;}
+  .hero-btns .btn-r,.hero-btns .btn-gw{width:100%;justify-content:center;}
+  .scroll-ind{display:none;}
+  .metrics-bar{grid-template-columns:1fr 1fr;}
+  .mb-item:nth-child(5){display:none;}
+  .mb-item:nth-child(2){border-right:none;}
+  .sec{padding:44px 16px;}
+  .feat-grid,.grid2,.panel3,.accred-wrap,.blist,.frow,.area-grid,.footer-grid{grid-template-columns:1fr!important;}
+  .feat-card:nth-child(n){border-right:none;}
+  .h2{font-size:clamp(24px,7vw,34px);}
+  .p-black,.p-red,.p-white{padding:28px 20px;}
+  .red-band,.black-band{padding:36px 16px;}
+  .red-band .btn-w,.black-band .btn-w{width:100%;justify-content:center;}
+  .phero{min-height:260px;}
+  .phero-wrap{padding:36px 16px;}
+  .phero h1{font-size:clamp(22px,7vw,36px);}
+  .phero p{font-size:14px;}
+  .img-banner{height:200px;}
+  .ib-txt{left:16px;font-size:clamp(20px,6vw,32px);}
+  .img-frame img{height:240px;}
+  .feat-card{padding:24px 18px;}
+  .rc{padding:22px 18px;}
+  .hr{margin:40px 0;}
+  .cblock{padding:20px 16px;}
+  footer{padding:44px 16px 20px;}
+  .foot-bot{flex-direction:column;align-items:center;text-align:center;}
+  .ac-body{padding:18px 16px;}
+}
+@media(max-width:380px){
+  .logo-img{height:68px;width:auto;transition:height var(--ease);}
+  .hero h1{font-size:26px;}
+  .h2{font-size:22px;}
+  .phero h1{font-size:20px;}
+}
+
+/* ── YouTube video background ── */
+.yt-bg-wrap{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.yt-bg-frame{
+  position:absolute;
+  /* Oversized to crop — 16:9 fills any aspect ratio hero */
+  width:177.78vh; /* 16/9 * 100vh */
+  height:100vh;
+  min-width:100%;
+  min-height:56.25vw; /* 9/16 * 100vw */
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  border:none;pointer-events:none;
+}
+.yt-bg-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(105deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.25) 100%);
+}
+.hero-overlay{display:none;} /* hide old overlay since yt-bg-overlay handles it */
+
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-live"><div class="tb-dot"></div>Now Serving: Scotland &middot; North East &middot; Midlands &middot; Southern England</div>
+  <div class="tb-right">
+    <a href="tel:01416112444">&#9742;&nbsp;0141 611 2444</a>
+    <span class="tb-sep">|</span>
+    <a href="/cdn-cgi/l/email-protection#4f262129200f2c272922283d203a3f612c2022">&#9993;&nbsp;<span class="__cf_email__" data-cfemail="cea7a0a8a18eada6a8a3a9bca1bbbee0ada1a3">[email&#160;protected]</span></a>
+    <span class="tb-sep">|</span>
+    <span>24/7 Emergency</span>
+  </div>
+</div>
+
+<nav id="main-nav">
+  <div class="logo" id="logo-home"><img src="chfm-new.png" alt="CHFM Group" class="logo-img" id="logo-img-main"></div>
+  <ul class="nav-links" id="nav-links">
+    <li><a data-page="home" class="active">Home</a></li>
+    <li><a data-page="about">Why CHFM</a></li>
+    <li><a data-page="services">Services</a></li>
+    <li><a data-page="sectors">Sectors</a></li>
+    <li><a data-page="areas">Areas</a></li>
+    <li><a data-page="sustainability">Sustainability</a></li>
+    <li><a data-page="accreditations">Accreditations</a></li>
+    <li><a data-page="team">Team</a></li>
+    <li><a data-page="join">Join Us</a></li>
+    <li><a data-page="contact" class="nav-cta">Let&rsquo;s Talk</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="nav-overlay"></div>
+<div class="mobile-nav" id="mobile-nav">
+  <div class="mnav-hdr">
+    <img src="chfm-new.png" alt="CHFM Group" class="logo-img" style="height:40px;">
+    <button class="mnav-close" id="mnav-close">&#x2715;</button>
+  </div>
+  <ul>
+    <li><a data-page="home" class="active">Home</a></li>
+    <li><a data-page="about">Why CHFM Group</a></li>
+    <li><a data-page="services">Services We Offer</a></li>
+    <li><a data-page="sectors">Sectors We Serve</a></li>
+    <li><a data-page="areas">Areas We Cover</a></li>
+    <li><a data-page="sustainability">Care &amp; Sustainability</a></li>
+    <li><a data-page="accreditations">Accreditations</a></li>
+    <li><a data-page="team">Our Team</a></li>
+    <li><a data-page="join">Join Us</a></li>
+  </ul>
+  <a class="mnav-cta" data-page="contact">Let&rsquo;s Talk &rarr;</a>
+  <div class="mnav-contact">
+    <a href="tel:01416112444">&#9742;&nbsp;0141 611 2444</a>
+    <a href="/cdn-cgi/l/email-protection#6e070008012e0d060803091c011b1e400d0103">&#9993;&nbsp;<span class="__cf_email__" data-cfemail="5f363139301f3c373932382d302a2f713c3032">[email&#160;protected]</span></a>
+  </div>
+</div>
+
+
+<div class="page active" id="page-home">
+
+  <!-- FULL-BLEED IMAGE HERO -->
+  <div class="hero">
+    <div class="yt-bg-wrap">
+    <div class="yt-bg-overlay"></div>
+    <iframe class="yt-bg-frame"
+      src="https://www.youtube.com/embed/YoXMq1QstBs?autoplay=1&mute=1&loop=1&playlist=YoXMq1QstBs&start=4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&vq=hd1080"
+      title="CHFM Group" frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen></iframe>
+  </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker">UK Facilities Management Leaders</div>
+        <h1>The UK&rsquo;s Trusted<br><span>FM Partner</span><br>Since 1993</h1>
+        <p class="hero-sub">Exceptional facilities management for local authorities, housing associations, and commercial clients across the UK &mdash; 30 years of expertise, integrity, and community-focused excellence.</p>
+        <div class="hero-certs">
+          <div class="hc r">ISO 9001</div><div class="hc r">ISO 45001</div><div class="hc r">ISO 14001</div>
+          <div class="hc">CHAS Elite</div><div class="hc">Gas Safe</div><div class="hc">NICEIC</div><div class="hc">Living Wage</div>
+        </div>
+        <div class="hero-btns">
+          <a class="btn-r" href="#" data-page="services">Our Services &rarr;</a>
+          <a class="btn-gw" href="#" data-page="contact">Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-num">30+</div><div class="hstat-txt"><h4>Years Experience</h4><p>Trusted UK FM provider since 1993</p></div></div>
+        <div class="hstat"><div class="hstat-num">11</div><div class="hstat-txt"><h4>Accreditations</h4><p>ISO 9001, 45001, 14001 &amp; more</p></div></div>
+        <div class="hstat"><div class="hstat-num">3</div><div class="hstat-txt"><h4>UK Regions</h4><p>Scotland, North, Midlands, South</p></div></div>
+        <div class="hstat"><div class="hstat-num">24/7</div><div class="hstat-txt"><h4>Emergency Response</h4><p>Round-the-clock reactive support</p></div></div>
+      </div>
+    </div>
+    <div class="scroll-ind"><span>Scroll</span><div class="scroll-arrow"></div></div>
+  </div>
+
+  <!-- METRICS BAR -->
+  <div class="metrics-bar">
+    <div class="mb-item"><div class="mb-num">30+</div><div class="mb-lbl">Years Experience</div></div>
+    <div class="mb-item"><div class="mb-num">3</div><div class="mb-lbl">UK Regions</div></div>
+    <div class="mb-item"><div class="mb-num">11</div><div class="mb-lbl">Accreditations</div></div>
+    <div class="mb-item"><div class="mb-num">ISO</div><div class="mb-lbl">9001 &middot; 45001 &middot; 14001</div></div>
+    <div class="mb-item"><div class="mb-num">24/7</div><div class="mb-lbl">Emergency Response</div></div>
+  </div>
+
+  <!-- WHO WE ARE -->
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow">Who We Are</div>
+          <h2 class="h2">Comprehensive FM for <span>Public Sector</span> &amp; Community</h2>
+          <p class="body-txt">CHFM Group is a full-service facilities management company with over three decades of experience working alongside local authorities, housing associations, and commercial clients. One of the UK&rsquo;s most accredited FM providers &mdash; recognised for safety, quality, sustainability, and genuine community impact.</p>
+          <p class="body-txt">From planned preventative maintenance and reactive repairs to energy management and full regulatory compliance, we deliver integrated solutions that keep buildings safe, efficient, and fit for purpose.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
+            <a class="btn-b" href="#" data-page="about">About CHFM Group</a>
+            <a class="btn-ol" href="#" data-page="accreditations">Our Accreditations</a>
+          </div>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="UK housing" loading="lazy">
+          <div class="img-bar"><p>Social Housing Management &middot; <span>United Kingdom</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES — dark section with image bg -->
+  <section class="sec sec-img" style="padding:88px 64px;">
+    <img class="sec-img-bg" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=70" alt="" loading="lazy">
+    <div class="sec-img-ov" style="background:rgba(0,0,0,.86);"></div>
+    <div class="sec-inner">
+      <div class="eyebrow eyebrow-w">Core Services</div>
+      <h2 class="h2 h2-w" style="margin-bottom:12px;">What We <span>Deliver</span></h2>
+      <p class="lead lead-w">Certified professionals, 30 years of sector expertise, full lifecycle FM.</p>
+      <div class="feat-grid" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1);">
+        <div class="feat-card" style="background:rgba(255,255,255,.05);border:none;"><div class="feat-icon" style="background:rgba(232,0,11,.2);">🏢</div><h3 style="color:#fff;">Facilities Management</h3><p style="color:var(--g600);">End-to-end property management: planned maintenance, reactive repairs, emergency response, and full asset oversight.</p></div>
+        <div class="feat-card" style="background:rgba(255,255,255,.05);border:none;"><div class="feat-icon" style="background:rgba(232,0,11,.2);">🏠</div><h3 style="color:#fff;">Housing Associations</h3><p style="color:var(--g600);">Specialist social housing support &mdash; resident liaison, void management, compliance checks, and responsive maintenance.</p></div>
+        <div class="feat-card" style="background:rgba(255,255,255,.05);border:none;"><div class="feat-icon" style="background:rgba(232,0,11,.2);">🏛️</div><h3 style="color:#fff;">Local Authorities</h3><p style="color:var(--g600);">Civic building maintenance and public estate management within public sector procurement frameworks.</p></div>
+        <div class="feat-card" style="background:rgba(255,255,255,.05);border:none;"><div class="feat-icon" style="background:rgba(232,0,11,.2);">⚡</div><h3 style="color:#fff;">Energy Management</h3><p style="color:var(--g600);">Energy audits, efficiency upgrades, and renewable integration towards net-zero commitments.</p></div>
+        <div class="feat-card" style="background:rgba(255,255,255,.05);border:none;"><div class="feat-icon" style="background:rgba(232,0,11,.2);">🔧</div><h3 style="color:#fff;">Mechanical &amp; Electrical</h3><p style="color:var(--g600);">Gas Safe and NICEIC approved engineers for heating, electrical compliance, and full M&amp;E programmes.</p></div>
+        <div class="feat-card" style="background:rgba(255,255,255,.05);border:none;"><div class="feat-icon" style="background:rgba(232,0,11,.2);">🛡️</div><h3 style="color:#fff;">Compliance &amp; Safety</h3><p style="color:var(--g600);">Gas safety, electrical condition reports, fire risk assessments, legionella controls, and asbestos management.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:44px;"><a class="btn-r" href="#" data-page="services">View All Services &rarr;</a></div>
+    </div>
+  </section>
+
+  <!-- IMAGE BANNER -->
+  <div class="img-banner">
+    <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1400&q=75" alt="UK cities" loading="lazy">
+    <div class="ib-ov"></div>
+    <div class="ib-txt">Nationwide Reach.<br><span>Local Understanding.</span></div>
+  </div>
+
+  <!-- VISION PANELS -->
+  <section class="sec sec-off">
+    <div class="sec-inner">
+      <div class="eyebrow">Our Foundation</div>
+      <h2 class="h2">Vision, Mission &amp; <span>Values</span></h2>
+      <div class="panel3">
+        <div class="p-black"><div class="panel-lbl">Our Vision</div><h3>Leading FM Across the UK</h3><p>To be the leading provider of tailored FM services &mdash; empowering local authorities and housing associations to create safe, efficient, and sustainable environments.</p></div>
+        <div class="p-red"><div class="panel-lbl">Our Mission</div><h3>Exceptional Service, Every Time</h3><p>To deliver exceptional FM services that consistently exceed client expectations through quality, reliability, transparency, and continuous improvement.</p></div>
+        <div class="p-white"><div class="panel-lbl">Our Values</div><h3>Integrity, Excellence &amp; Partnership</h3><p>We operate with unwavering integrity and a relentless pursuit of excellence, working as an extension of our clients&rsquo; teams to genuinely improve lives.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="red-band">
+    <div><h2>Ready to Discuss Your FM Needs?</h2><p>Our team is available Mon&ndash;Fri 8am&ndash;5:30pm with 24/7 emergency response.</p></div>
+    <a class="btn-w" href="#" data-page="contact">Get in Touch Today</a>
+  </div>
+</div>
+
+
+<div class="page" id="page-about">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Why CHFM Group</strong></div>
+      <h1>Three Decades of <span>Professionalism,</span> Purpose &amp; Progress</h1>
+      <p>At CHFM Group, we have spent over 30 years building a reputation for excellence in FM.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow">Our Story</div>
+          <h2 class="h2">A Heritage Built on <span>Trust</span></h2>
+          <p class="body-txt">Founded over three decades ago, CHFM Group has grown from a specialist maintenance provider into one of the UK&rsquo;s most trusted full-service FM companies. Our journey has been shaped by a relentless commitment to quality and a genuine care for the communities we serve.</p>
+          <p class="body-txt">Today we operate across Scotland, the North East, Midlands, and Southern England, with highly skilled professionals delivering outstanding outcomes for every client, on every contract.</p>
+          <div class="pq"><p>"Excellent facilities management improves lives &mdash; and we are dedicated to making a lasting, positive impact on every community we serve."</p></div>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80" alt="UK building maintenance" loading="lazy">
+          <div class="img-bar"><p>CHFM Group &middot; <span>UK Operations</span></p></div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="two-col flip">
+        <div>
+          <div class="eyebrow">Mission &amp; Vision</div>
+          <h2 class="h2">What Drives Us <span>Forward</span></h2>
+          <p class="body-txt"><strong>Our mission</strong> is to deliver high-quality FM services that ensure safe, efficient, and sustainable environments. We create real, measurable value for every client.</p>
+          <p class="body-txt"><strong>Our vision</strong> is to be the leading FM provider recognised for innovation, reliability, social value, and an unwavering commitment to the communities we serve.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
+            <a class="btn-b" href="#" data-page="sustainability">Sustainability Commitments &rarr;</a>
+          </div>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="UK cityscape" loading="lazy">
+          <div class="img-bar"><p>Operations &middot; <span>United Kingdom</span></p></div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="eyebrow">Our People</div>
+      <h2 class="h2">People Who <span>Deliver</span></h2>
+      <p class="body-txt" style="max-width:700px;">Our greatest asset is our people. We invest heavily in training, professional development, and employee wellbeing &mdash; ensuring our teams carry the latest knowledge and best practices.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
+        <a class="btn-b" href="#" data-page="team">Meet the Team</a>
+        <a class="btn-ol" href="#" data-page="join">Join CHFM Group</a>
+      </div>
+    </div>
+  </section>
+  <div class="black-band">
+    <div><h2>Experienced. Accredited. Committed.</h2><p>Discover why clients across the UK trust CHFM Group to deliver year after year.</p></div>
+    <a class="btn-w" href="#" data-page="contact">Speak to Our Team</a>
+  </div>
+</div>
+
+
+<div class="page" id="page-services">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Services We Offer</strong></div>
+      <h1>Integrated Services, <span>Tailored</span> to Your Needs</h1>
+      <p>A comprehensive suite of FM solutions for local authorities, housing associations, and commercial clients.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="eyebrow">Our Capabilities</div>
+      <h2 class="h2">Everything You Need, <span>Under One Roof</span></h2>
+      <p class="lead">With over 30 years of experience and a team of certified specialists.</p>
+      <div class="two-col" style="margin-bottom:56px;">
+        <div>
+          <h3 style="font-family:var(--f2);font-weight:800;font-size:24px;text-transform:uppercase;color:var(--black);margin-bottom:12px;letter-spacing:.02em;">Facilities Management</h3>
+          <p class="body-txt">Our core FM service covers every aspect of building operation. We develop bespoke planned preventative maintenance programmes tailored to your asset types, minimising disruption and extending asset life.</p>
+          <ul class="ckl">
+            <li>Planned preventative maintenance programmes</li>
+            <li>24/7 reactive and emergency repairs</li>
+            <li>Asset inspection and lifecycle management</li>
+            <li>CAFM system management and reporting</li>
+            <li>Full compliance documentation</li>
+          </ul>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" alt="Maintenance professional" loading="lazy">
+          <div class="img-bar"><p>Planned Maintenance &middot; <span>CHFM Group</span></p></div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="two-col flip" style="margin-bottom:56px;">
+        <div>
+          <h3 style="font-family:var(--f2);font-weight:800;font-size:24px;text-transform:uppercase;color:var(--black);margin-bottom:12px;letter-spacing:.02em;">Housing &amp; Local Authorities</h3>
+          <p class="body-txt">We understand the unique pressures &mdash; regulatory scrutiny, budget constraints, resident expectations. Our specialist teams work sensitively in occupied properties, handling every maintenance request with professionalism and care.</p>
+          <ul class="ckl">
+            <li>Resident-sensitive in-home maintenance</li>
+            <li>Void property refurbishment &amp; preparation</li>
+            <li>Communal area cleaning &amp; maintenance</li>
+            <li>Tenant satisfaction reporting</li>
+            <li>Public sector procurement frameworks</li>
+          </ul>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1549918864-48ac978761a4?w=800&q=80" alt="Housing estate" loading="lazy">
+          <div class="img-bar"><p>Social Housing &middot; <span>United Kingdom</span></p></div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="two-col">
+        <div>
+          <h3 style="font-family:var(--f2);font-weight:800;font-size:24px;text-transform:uppercase;color:var(--black);margin-bottom:12px;letter-spacing:.02em;">Energy Management</h3>
+          <p class="body-txt">We work with clients to understand current energy usage, identify inefficiencies, and implement proven measures that reduce consumption and shrink carbon footprints &mdash; aligned with UK net-zero commitments.</p>
+          <ul class="ckl">
+            <li>Energy audits and performance analysis</li>
+            <li>LED, insulation &amp; smart controls installation</li>
+            <li>Renewable energy integration</li>
+            <li>ESG and sustainability reporting support</li>
+            <li>Carbon reduction strategy</li>
+          </ul>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80" alt="Energy sustainability" loading="lazy">
+          <div class="img-bar"><p>Energy Management &middot; <span>Net Zero</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="red-band">
+    <div><h2>Need a Tailored FM Solution?</h2><p>Every client is different. Let&rsquo;s talk about what CHFM Group can do for you.</p></div>
+    <a class="btn-w" href="#" data-page="contact">Request a Consultation</a>
+  </div>
+</div>
+
+
+<div class="page" id="page-sectors">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Sectors We Serve</strong></div>
+      <h1>Public-Focused FM, <span>Built</span> Around You</h1>
+      <p>Specialist FM for public sector and community-focused organisations.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <p class="lead" style="max-width:780px;">Each sector we serve has its own regulatory demands and operational challenges. CHFM Group has built specialist teams and service methodologies for each.</p>
+      <div class="grid2">
+        <div class="feat-card" style="padding:36px;"><div class="feat-icon">🏛️</div><h3>Local Authorities</h3><p>We work with councils across the UK to maintain civic buildings, public estates, leisure facilities, and community assets within public sector procurement frameworks with full governance and transparency.</p></div>
+        <div class="feat-card" style="padding:36px;"><div class="feat-icon">🏠</div><h3>Housing Associations</h3><p>Registered providers face increasing regulatory pressure around safety, decent homes standards, and resident satisfaction. Our housing teams manage planned maintenance, reactive repairs, void refurbishments, and statutory compliance visits.</p></div>
+        <div class="feat-card" style="padding:36px;"><div class="feat-icon">🏢</div><h3>Commercial Property</h3><p>A full range of FM services for commercial landlords, managing agents, and developers. Whether managing a single building or a national portfolio, we deliver expertise and consistency to keep assets compliant and tenant-ready.</p></div>
+        <div class="feat-card" style="padding:36px;"><div class="feat-icon">🤝</div><h3>Community &amp; Voluntary</h3><p>Charities, faith organisations, and voluntary sector groups operate critical community facilities with limited budgets. We provide affordable, flexible maintenance services that keep these vital buildings safe and compliant.</p></div>
+      </div>
+    </div>
+  </section>
+  <div class="black-band">
+    <div><h2>Is CHFM Group Right for Your Sector?</h2><p>Talk to us &mdash; we&rsquo;ll design a service model that works for you.</p></div>
+    <a class="btn-w" href="#" data-page="contact">Start the Conversation</a>
+  </div>
+</div>
+
+
+<div class="page" id="page-areas">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Areas We Serve</strong></div>
+      <h1>Delivering Nationwide &mdash; <span>Rooted</span> in Communities</h1>
+      <p>CHFM Group operates across the UK with strategically placed regional teams.</p>
+    </div>
+  </div>
+  <section class="sec sec-off">
+    <div class="sec-inner">
+      <div class="eyebrow">Our Coverage</div>
+      <h2 class="h2">Nationwide Reach. <span>Local Expertise.</span></h2>
+      <p class="lead">Our regional model keeps us genuinely connected to the communities we serve. Local teams, local knowledge, national standards.</p>
+      <div class="area-grid">
+        <div class="area-card">
+          <div class="ac-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Scotland" loading="lazy"><div class="ac-ov"></div><div class="ac-lbl">Scotland</div></div>
+          <div class="ac-body"><div class="ac-tag">Central Belt &middot; Highlands &middot; West &amp; East</div><p>Long-standing partnerships with councils and registered social landlords from Glasgow and Edinburgh to Inverness and Dundee.</p>
+          <span class="form-sep">Contact our Scotland Team</span>
+          <input class="field" type="text" placeholder="Your Name"><input class="field" type="email" placeholder="Email Address">
+          <textarea class="field" style="height:65px;" placeholder="How can we help?"></textarea>
+          <a class="btn-b" href="#" data-page="contact" style="width:100%;justify-content:center;margin-top:4px;">Send Message &rarr;</a></div>
+        </div>
+        <div class="area-card">
+          <div class="ac-img"><img src="https://images.unsplash.com/photo-1549918864-48ac978761a4?w=700&q=80" alt="North of England" loading="lazy"><div class="ac-ov"></div><div class="ac-lbl">North East &amp; Midlands</div></div>
+          <div class="ac-body"><div class="ac-tag">Newcastle &middot; Leeds &middot; Birmingham &middot; Sheffield</div><p>From Tyneside to Birmingham, supporting diverse housing portfolios and public sector clients with consistent safety and compliance focus.</p>
+          <span class="form-sep">Contact our North &amp; Midlands Team</span>
+          <input class="field" type="text" placeholder="Your Name"><input class="field" type="email" placeholder="Email Address">
+          <textarea class="field" style="height:65px;" placeholder="How can we help?"></textarea>
+          <a class="btn-b" href="#" data-page="contact" style="width:100%;justify-content:center;margin-top:4px;">Send Message &rarr;</a></div>
+        </div>
+        <div class="area-card">
+          <div class="ac-img"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80" alt="London" loading="lazy"><div class="ac-ov"></div><div class="ac-lbl">Southern England</div></div>
+          <div class="ac-body"><div class="ac-tag">London &middot; Home Counties &middot; South Coast</div><p>Serving Greater London, the Home Counties, and key urban centres across the South with rapid response capability.</p>
+          <span class="form-sep">Contact our Southern England Team</span>
+          <input class="field" type="text" placeholder="Your Name"><input class="field" type="email" placeholder="Email Address">
+          <textarea class="field" style="height:65px;" placeholder="How can we help?"></textarea>
+          <a class="btn-b" href="#" data-page="contact" style="width:100%;justify-content:center;margin-top:4px;">Send Message &rarr;</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="page" id="page-sustainability">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Care &amp; Sustainability</strong></div>
+      <h1>Committed to <span>Community</span> &amp; Planet</h1>
+      <p>At CHFM Group, our responsibility extends far beyond the buildings we manage.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow">Social Value</div>
+          <h2 class="h2">Building Stronger <span>Communities</span></h2>
+          <p class="body-txt">CHFM Group is a people-first organisation. We believe excellent FM is about more than maintaining buildings &mdash; it&rsquo;s about creating safe, welcoming environments that genuinely improve people&rsquo;s lives.</p>
+          <div class="pq"><p>"We see every contract as an opportunity to make a real, lasting difference in the communities we serve."</p></div>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80" alt="Community support" loading="lazy">
+          <div class="img-bar"><p>Community Investment &middot; <span>CHFM Group</span></p></div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="eyebrow">Community Initiatives</div>
+      <h2 class="h2">How We <span>Give Back</span></h2>
+      <div class="blist">
+        <div class="bi"><div><h4>Local Employment First</h4><p>Prioritising recruitment from the communities we operate in &mdash; creating local jobs and training pathways.</p></div></div>
+        <div class="bi"><div><h4>Apprenticeships &amp; Skills</h4><p>Structured apprenticeship programmes in FM trades with colleges and skills bodies across the UK.</p></div></div>
+        <div class="bi"><div><h4>Tenant Engagement</h4><p>Supporting housing associations and councils in tenant communication, wellbeing checks, and safety education.</p></div></div>
+        <div class="bi"><div><h4>Volunteering &amp; Sponsorship</h4><p>Staff volunteering for local community projects and supporting schools and youth organisations.</p></div></div>
+        <div class="bi"><div><h4>Vulnerable Residents Support</h4><p>Specialist sensitivity training for teams working in homes of elderly, disabled, or vulnerable residents.</p></div></div>
+        <div class="bi"><div><h4>ESG &amp; Sustainability Reporting</h4><p>Monitoring environmental performance and providing clients with documentation for ESG compliance.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <!-- Environmental — image background section -->
+  <section class="sec sec-img" style="padding:88px 64px;">
+    <img class="sec-img-bg" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1400&q=70" alt="" loading="lazy">
+    <div class="sec-img-ov" style="background:rgba(0,0,0,.82);"></div>
+    <div class="sec-inner">
+      <div class="eyebrow eyebrow-w">Environment</div>
+      <h2 class="h2 h2-w">Our Approach to <span>Sustainability</span></h2>
+      <p class="lead lead-w">ISO 14001 certified, committed to net-zero, embedding environmental responsibility into every contract.</p>
+      <div class="blist">
+        <div class="bi" style="background:rgba(255,255,255,.07);border-color:var(--red);"><div><h4 style="color:#fff;">Energy Efficiency</h4><p style="color:var(--g600);">LED upgrades, improved insulation, smart controls, and optimised HVAC systems.</p></div></div>
+        <div class="bi" style="background:rgba(255,255,255,.07);border-color:var(--red);"><div><h4 style="color:#fff;">Carbon Reduction</h4><p style="color:var(--g600);">Transitioning our fleet to low-emission and electric models with intelligent route planning.</p></div></div>
+        <div class="bi" style="background:rgba(255,255,255,.07);border-color:var(--red);"><div><h4 style="color:#fff;">Responsible Waste</h4><p style="color:var(--g600);">Prioritising reuse and recycling, partnering with licensed ethical disposal providers.</p></div></div>
+        <div class="bi" style="background:rgba(255,255,255,.07);border-color:var(--red);"><div><h4 style="color:#fff;">Net Zero Strategy</h4><p style="color:var(--g600);">Aligning our sustainability strategy with the UK Government&rsquo;s net-zero commitments.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="red-band">
+    <div><h2>Sustainability at the Heart of FM</h2><p>Find out how CHFM Group can help meet your environmental and social value commitments.</p></div>
+    <a class="btn-w" href="#" data-page="contact">Talk to Our Team</a>
+  </div>
+</div>
+
+
+<div class="page" id="page-accreditations">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Accreditations</strong></div>
+      <h1>Certified. <span>Compliant.</span> Trusted.</h1>
+      <p>Independent assurance that CHFM Group meets the highest industry standards in quality, safety, and environmental management.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="eyebrow">Our Credentials</div>
+      <h2 class="h2">Recognised by the Industry&rsquo;s <span>Leading Bodies</span></h2>
+      <p class="lead">We continuously invest in maintaining and expanding our accreditation portfolio.</p>
+      <div class="accred-wrap">
+        <div class="ac"><div class="ac-badge">ISO 9001</div><h3>Quality Management</h3><p>Demonstrates our commitment to consistent, high-quality service delivery with robust, auditable processes built around continuous improvement.</p></div>
+        <div class="ac"><div class="ac-badge">ISO 45001</div><h3>Health &amp; Safety</h3><p>Systematic identification, assessment, and control of workplace risks &mdash; protecting our people, clients&rsquo; employees, and residents on every project.</p></div>
+        <div class="ac"><div class="ac-badge">ISO 14001</div><h3>Environmental Management</h3><p>A structured framework for managing resources responsibly, reducing carbon emissions, cutting waste, and embedding environmental thinking into service delivery.</p></div>
+        <div class="ac"><div class="ac-badge">CHAS Elite</div><h3>CHAS Elite Accreditation</h3><p>The highest level of CHAS accreditation &mdash; reflecting full alignment with the most stringent health, safety, and risk management standards in the UK.</p></div>
+        <div class="ac"><div class="ac-badge">Constructionline Gold</div><h3>Constructionline Gold</h3><p>Verified excellence across health and safety, quality management, and business governance, awarded after rigorous independent assessment.</p></div>
+        <div class="ac"><div class="ac-badge">SafeContractor</div><h3>SafeContractor by Alcumus</h3><p>Verifies our health and safety practices meet stringent industry standards &mdash; proven risk controls in place on every project.</p></div>
+        <div class="ac"><div class="ac-badge">SMAS</div><h3>SMAS Worksafe Contractor</h3><p>Part of the SSIP framework, confirming our processes and workforce training meet the UK&rsquo;s most rigorous safety management requirements.</p></div>
+        <div class="ac"><div class="ac-badge">Achilles</div><h3>Achilles Registered Supplier</h3><p>Rigorous independent audits covering compliance, risk management, and ethical practices &mdash; streamlining procurement and reducing commercial risk.</p></div>
+        <div class="ac"><div class="ac-badge">Gas Safe</div><h3>Gas Safe Registered</h3><p>All our gas engineers are legally certified and qualified to carry out gas installations, servicing, and maintenance safely and compliantly.</p></div>
+        <div class="ac"><div class="ac-badge">NICEIC</div><h3>NICEIC Approved Contractor</h3><p>Fully competent and legally compliant to design, install, and maintain electrical systems to strict industry and regulatory requirements.</p></div>
+        <div class="ac"><div class="ac-badge">Living Wage</div><h3>Living Wage Employer</h3><p>We go beyond the legal minimum &mdash; paying all our workforce a fair wage that reflects the real cost of UK living.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="page" id="page-team">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Our Team</strong></div>
+      <h1>Skilled People, Delivering <span>Excellence</span> Together</h1>
+      <p>Structured by function, united by values, driven by a shared commitment to exceptional service.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="eyebrow">Our Structure</div>
+      <h2 class="h2">An Agile, <span>People-First</span> Organisation</h2>
+      <p class="lead">A structure that responds quickly to client needs, maintains the highest compliance standards, and delivers measurable outcomes.</p>
+      <div class="grid2">
+        <div class="rc"><h3>Management &amp; Strategy</h3><p>Our leadership team sets strategic direction, ensuring we remain aligned with clients&rsquo; goals, overseeing company-wide performance and championing sustainability and social value.</p></div>
+        <div class="rc"><h3>Operations &amp; Delivery</h3><p>The operational backbone of CHFM Group. This team coordinates all day-to-day service delivery across planned maintenance, reactive repairs, asset inspections, and specialist works.</p></div>
+        <div class="rc"><h3>Trades &amp; Technical Services</h3><p>In-house certified engineers and multi-trade operatives carrying out essential technical work &mdash; gas, electrical, plumbing, joinery, and building maintenance.</p></div>
+        <div class="rc"><h3>Compliance &amp; Safety</h3><p>Dedicated compliance team ensuring every piece of work meets regulatory standards, managing audits, certifications, and quality control across all safety disciplines.</p></div>
+        <div class="rc"><h3>Customer &amp; Tenant Support</h3><p>Frontline communication and support for housing tenants, local authority stakeholders, and commercial occupiers &mdash; ensuring every person feels heard and respected.</p></div>
+        <div class="rc"><h3>Finance &amp; Administration</h3><p>Smooth financial and operational running of the business &mdash; invoicing, contract documentation, financial reporting, and administrative support.</p></div>
+      </div>
+      <div class="hr"></div>
+      <div style="text-align:center;padding:52px;background:var(--g100);border-top:3px solid var(--red);">
+        <div class="eyebrow" style="justify-content:center;">Careers</div>
+        <h2 class="h2" style="margin-bottom:12px;">Want to Join the <span>CHFM Group Team?</span></h2>
+        <p style="font-size:16px;color:var(--g600);max-width:500px;margin:0 auto 28px;line-height:1.75;">Always looking for talented, dedicated professionals who share our values.</p>
+        <a class="btn-r" href="#" data-page="join">View Career Opportunities</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="page" id="page-join">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Join CHFM Group</strong></div>
+      <h1>Build a Rewarding <span>Career</span> in FM</h1>
+      <p>At CHFM Group, our people are our greatest asset. We invest in our teams and create genuine opportunities for growth.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="two-col" style="margin-bottom:60px;">
+        <div>
+          <div class="eyebrow">Why Join Us</div>
+          <h2 class="h2">A Career Worth <span>Building</span></h2>
+          <p class="body-txt">CHFM Group offers more than a job &mdash; a career within a well-established, growing FM company that genuinely values its people. As a Living Wage employer, we pay our teams fairly and invest in their development.</p>
+          <ul class="ckl">
+            <li>Living Wage accredited employer</li>
+            <li>Ongoing training and professional development</li>
+            <li>Apprenticeship and upskilling programmes</li>
+            <li>Clear progression pathways</li>
+            <li>Inclusive, supportive working culture</li>
+          </ul>
+        </div>
+        <div class="img-frame">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80" alt="Professional team" loading="lazy">
+          <div class="img-bar"><p>Our People &middot; <span>CHFM Group</span></p></div>
+        </div>
+      </div>
+      <div class="eyebrow">Current Opportunities</div>
+      <h2 class="h2">Roles We&rsquo;re <span>Recruiting For</span></h2>
+      <div class="grid2" style="margin-bottom:56px;">
+        <div class="rc"><h3>Administration</h3><p>Office administrators, receptionists, and finance support staff. Organised, customer-focused individuals who thrive in a fast-paced environment.</p></div>
+        <div class="rc"><h3>Planners</h3><p>Developing and managing maintenance schedules, coordinating with clients, and optimising resource allocation across our operational regions.</p></div>
+        <div class="rc"><h3>Team Supervisors</h3><p>Overseeing day-to-day field operations, managing trade teams, and ensuring compliance with safety and quality standards.</p></div>
+        <div class="rc"><h3>Finance Administrators</h3><p>Invoicing, budgeting, financial reporting, and contract documentation. Strong analytical skills and attention to detail required.</p></div>
+        <div class="rc"><h3>Gas Engineers</h3><p>Gas Safe registered engineers carrying out installation, servicing, and maintenance of gas appliances. ACS qualifications required.</p></div>
+        <div class="rc"><h3>Multi-Trade Operatives</h3><p>Versatile tradespeople delivering carpentry, plumbing, tiling, and general building maintenance across housing and commercial properties.</p></div>
+        <div class="rc"><h3>Electrical Engineers</h3><p>NICEIC-registered electrical engineers responsible for installation, testing, maintenance, and remedial works.</p></div>
+        <div class="rc"><h3>Labourers</h3><p>An excellent entry point into FM. Assisting tradespeople and carrying out general maintenance. A reliable and willing attitude is key.</p></div>
+      </div>
+      <div class="hr-r"></div>
+      <div class="eyebrow">Apply Now</div>
+      <h2 class="h2">Take the First Step Towards Your <span>Future</span></h2>
+      <div style="max-width:600px;margin-top:28px;">
+        <div class="frow"><input class="field" type="text" placeholder="First Name"><input class="field" type="text" placeholder="Last Name"></div>
+        <input class="field" type="email" placeholder="Email Address">
+        <input class="field" type="text" placeholder="Role Applying For">
+        <input class="field" type="tel" placeholder="Phone Number (optional)">
+        <textarea class="field" style="height:120px;" placeholder="Covering letter / Tell us why you'd like to join CHFM Group"></textarea>
+        <button class="btn-r" style="width:100%;justify-content:center;padding:14px;">Submit Application &rarr;</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="page" id="page-contact">
+
+  <div class="phero">
+    <img class="phero-bg" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1400&q=75" alt="" loading="lazy">
+    <div class="phero-ov"></div>
+    <div class="phero-wrap">
+      <div class="bc">Home <strong>/ Let's Talk</strong></div>
+      <h1>Let&rsquo;s <span>Talk</span></h1>
+      <p>Whether you want to discuss a new contract, need urgent FM advice, or simply want to find out more &mdash; our team is ready to help.</p>
+    </div>
+  </div>
+  <section class="sec">
+    <div class="sec-inner">
+      <div style="display:grid;grid-template-columns:1fr 1.8fr;gap:56px;align-items:start;">
+        <div>
+          <div class="cblock">
+            <div class="cd"><h4>Head Office</h4><p>Calder House &amp; Lanark Court<br>Tannochside Business Park<br>Ellismuir Way, Uddingston<br>G71 5PW</p></div>
+            <div class="cd"><h4>Telephone</h4><a href="tel:01416112444">0141 611 2444</a></div>
+            <div class="cd"><h4>Email</h4><a href="/cdn-cgi/l/email-protection#8fe6e1e9e0cfece7e9e2e8fde0faffa1ece0e2"><span class="__cf_email__" data-cfemail="355c5b535a75565d535852475a40451b565a58">[email&#160;protected]</span></a></div>
+            <div class="cd"><h4>Office Hours</h4><p>Monday &ndash; Friday: 8:00am &ndash; 5:30pm</p></div>
+            <div class="cd"><h4>Emergency Response</h4><p style="font-family:var(--f2);font-weight:800;color:var(--red);font-size:16px;text-transform:uppercase;letter-spacing:.06em;">24 Hours / 7 Days a Week</p></div>
+          </div>
+          <div class="cert-strip">
+            <div class="cert-lbl">Registered &amp; Accredited</div>
+            <div class="cert-badges">
+              <div class="cbadge">ISO 9001</div><div class="cbadge">ISO 45001</div><div class="cbadge">ISO 14001</div>
+              <div class="cbadge">CHAS Elite</div><div class="cbadge">Gas Safe</div><div class="cbadge">NICEIC</div><div class="cbadge">Living Wage</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow">Send a Message</div>
+          <h2 class="h2" style="font-size:clamp(24px,3vw,42px);margin-bottom:14px;">How Can We <span>Help You?</span></h2>
+          <p class="body-txt">Complete the form below and a member of our team will respond within one working day. For urgent enquiries, call <strong>0141 611 2444</strong>.</p>
+          <div style="margin-top:24px;">
+            <div class="frow"><input class="field" type="text" placeholder="First Name"><input class="field" type="text" placeholder="Last Name"></div>
+            <input class="field" type="email" placeholder="Email Address">
+            <input class="field" type="tel" placeholder="Phone Number">
+            <input class="field" type="text" placeholder="Organisation / Company">
+            <textarea class="field" placeholder="How can CHFM Group help? Please describe your requirements..."></textarea>
+            <button class="btn-r" style="width:100%;justify-content:center;padding:14px;">Send Message &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="chfm-new.png" alt="CHFM Group" class="logo-img" style="height:52px;">
+      <p style="margin-top:16px;">Trusted facilities management for local authorities, housing associations, and commercial clients across the UK. Over 30 years of expertise, integrity, and community-focused excellence.</p>
+      <div class="f-badges">
+        <div class="fb">ISO 9001</div><div class="fb">ISO 45001</div><div class="fb">ISO 14001</div>
+        <div class="fb">CHAS Elite</div><div class="fb">Gas Safe</div><div class="fb">NICEIC</div><div class="fb">Living Wage</div>
+      </div>
+    </div>
+    <div class="fc"><h4>Company</h4><ul>
+      <li><a data-page="about">Why CHFM Group</a></li>
+      <li><a data-page="team">Our Team</a></li>
+      <li><a data-page="sustainability">Sustainability</a></li>
+      <li><a data-page="accreditations">Accreditations</a></li>
+      <li><a data-page="join">Join Us</a></li>
+    </ul></div>
+    <div class="fc"><h4>Services</h4><ul>
+      <li><a data-page="services">Facilities Management</a></li>
+      <li><a data-page="services">Housing Association FM</a></li>
+      <li><a data-page="services">Local Authority Contracts</a></li>
+      <li><a data-page="services">Energy Management</a></li>
+      <li><a data-page="sectors">Sectors We Serve</a></li>
+      <li><a data-page="areas">Areas We Cover</a></li>
+    </ul></div>
+    <div class="fc"><h4>Contact</h4><ul>
+      <li><a href="tel:01416112444">0141 611 2444</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#a9c0c7cfc6e9cac1cfc4cedbc6dcd987cac6c4"><span class="__cf_email__" data-cfemail="a8c1c6cec7e8cbc0cec5cfdac7ddd886cbc7c5">[email&#160;protected]</span></a></li>
+      <li><a data-page="contact">Send an Enquiry</a></li>
+    </ul>
+    <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--g200);">
+      <div style="font-family:var(--f2);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--g400);margin-bottom:6px;">Head Office</div>
+      <p style="font-size:12.5px;line-height:1.7;color:var(--g400);">Calder House &amp; Lanark Court<br>Tannochside Business Park<br>Uddingston, G71 5PW</p>
+    </div></div>
+  </div>
+  <div class="foot-bot">
+    <p>&copy; 2025 <strong>CHFM Group</strong>. All rights reserved. Registered in Scotland.</p>
+    <p>24/7 Emergency: <strong>0141 611 2444</strong></p>
+  </div>
+</footer>
+<script>
+(function(){
+  function showPage(id){
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+    var t=document.getElementById('page-'+id);
+    if(t){t.classList.add('active');}
+    document.querySelectorAll('[data-page]').forEach(function(el){
+      el.classList.remove('active');
+      if(el.getAttribute('data-page')===id){el.classList.add('active');}
+    });
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function wireLinks(){
+    document.querySelectorAll('[data-page]').forEach(function(el){
+      el.addEventListener('click',function(e){
+        e.preventDefault();
+        showPage(this.getAttribute('data-page'));
+        closeMobileMenu();
+      });
+    });
+  }
+  var mNav=document.getElementById('mobile-nav');
+  var overlay=document.getElementById('nav-overlay');
+  var burger=document.getElementById('hamburger');
+  var closeBtn=document.getElementById('mnav-close');
+  function openMobileMenu(){mNav.classList.add('open');overlay.style.display='block';burger.classList.add('open');document.body.style.overflow='hidden';}
+  function closeMobileMenu(){if(!mNav)return;mNav.classList.remove('open');overlay.style.display='none';burger.classList.remove('open');document.body.style.overflow='';}
+  burger.addEventListener('click',function(){this.classList.contains('open')?closeMobileMenu():openMobileMenu();});
+  closeBtn.addEventListener('click',closeMobileMenu);
+  overlay.addEventListener('click',closeMobileMenu);
+  window.addEventListener('scroll',function(){
+    var nav=document.getElementById('main-nav');
+    nav.classList.toggle('scrolled',window.scrollY>50);
+  });
+  var counted=false;
+  window.addEventListener('scroll',function(){
+    if(counted)return;
+    var bar=document.querySelector('.metrics-bar');
+    if(!bar)return;
+    if(bar.getBoundingClientRect().top<window.innerHeight){
+      counted=true;
+      document.querySelectorAll('.mb-num').forEach(function(el){
+        var orig=el.textContent.trim();
+        var num=parseInt(orig.replace(/[^0-9]/g,''));
+        if(isNaN(num)||num<2)return;
+        var suffix=orig.replace(/[0-9]/g,'');
+        var cur=0,step=Math.max(20,1600/num);
+        var timer=setInterval(function(){cur++;el.textContent=cur+suffix;if(cur>=num){el.textContent=orig;clearInterval(timer);}},step);
+      });
+    }
+  });
+  wireLinks();
+})();
+</script>
+</body>
+</html>
